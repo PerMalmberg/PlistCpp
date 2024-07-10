@@ -7,7 +7,7 @@ include(GNUInstallDirs)
 if(WIN32)
 	# Build at warning level 4 on Windows.
 	# Treat all warnings as errors
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4267 /wd4244 /wd4100")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX /wd4267 /wd4244 /wd4100 /wd4828")
 	add_compile_definitions(_CRT_SECURE_NO_WARNINGS=1)
 else()
 	# Build with all warnings
