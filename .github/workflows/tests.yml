@@ -103,4 +103,7 @@ jobs:
       # consistent (Git Bash on Windows resolves test → Test.exe automatically).
       - name: Test
         shell: bash
-        run: ./build/test/test
+        run: |
+          cp test/test-data/* ./build/test/
+          cd build/test/
+          ./test
