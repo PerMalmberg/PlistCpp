@@ -590,17 +590,14 @@ std::vector<unsigned char> writeBinaryDouble(PlistHelperData& d, double value)
 	return buffer;
 }
 
-std::vector<unsigned char> writeBinaryBool(PlistHelperData& d, bool value)
+std::vector<unsigned char> writeBinaryBool(PlistHelperData& data, bool value)
 {
-	std::vector<unsigned char> buffer;
-	if(value)
-		buffer.push_back(0x09);
-	else
-		buffer.push_back(0x08);
+	const unsigned char val = value ? 0x09 : 0x08;
 
-	d._objectTable.insert(d._objectTable.begin(), buffer.begin(), buffer.end());
-	return buffer;
+	data._objectTable.insert(data._objectTable.begin(), val);
+	return {val};
 }
+
 
 std::vector<unsigned char> writeBinaryDate(PlistHelperData& d, const Date& date)
 {
