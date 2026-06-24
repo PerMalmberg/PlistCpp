@@ -11,7 +11,12 @@
 		{
 			"name": "project-base",
 			"hidden": true,
-			"cacheVariables": {}
+			"cacheVariables": {
+				"SOME_VARIABLE": {
+					"type": "BOOL",
+					"value": "ON"
+				}
+			}
 		},
 		{
 			"name": "linux-static",
@@ -22,8 +27,8 @@
 				"build-type-release"
 			],
 			"condition": {
-				"type": "equals",
 				"lhs": "${hostSystemName}",
+				"type": "equals",
 				"rhs": "Linux"
 			},
 			"cacheVariables": {
@@ -51,6 +56,25 @@
 					"type": "STRING",
 					"value": "x64-linux-static"
 				}
+			}
+		},
+		{
+			"name": "x86-linux-static-dev",
+			"inherits": [
+				"base-default",
+				"base-linux",
+				"base-dev",
+				"build-type-debug"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			},
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x86-linux-static",
+				"CMAKE_CXX_FLAGS": "-m32",
+				"CMAKE_C_FLAGS": "-m32"
 			}
 		},
 		{
@@ -114,6 +138,195 @@
 				"lhs": "${hostSystemName}",
 				"rhs": "Windows"
 			}
+		},
+		{
+			"name": "arm64-linux-static",
+			"inherits": [
+				"base-default",
+				"base-linux-arm64",
+				"project-base",
+				"build-type-release"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			},
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": {
+					"type": "STRING",
+					"value": "arm64-linux-static"
+				}
+			}
+		},
+		{
+			"name": "arm64-linux-static-dev",
+			"inherits": [
+				"base-default",
+				"base-linux-arm64",
+				"base-dev",
+				"build-type-debug"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			},
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": {
+					"type": "STRING",
+					"value": "arm64-linux-static"
+				}
+			}
+		},
+		{
+			"name": "arm64-osx-static",
+			"inherits": [
+				"base-default",
+				"base-osx-arm64",
+				"project-base",
+				"build-type-release"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Darwin"
+			}
+		},
+		{
+			"name": "arm64-osx-static-dev",
+			"inherits": [
+				"base-default",
+				"base-osx-arm64",
+				"base-dev",
+				"build-type-debug"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Darwin"
+			}
+		},
+		{
+			"name": "arm64-win-static",
+			"inherits": [
+				"base-default",
+				"base-win-arm64",
+				"project-base",
+				"build-type-release"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			}
+		},
+		{
+			"name": "arm64-win-static-dev",
+			"inherits": [
+				"base-default",
+				"base-win-arm64",
+				"base-dev",
+				"build-type-debug"
+			],
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			}
+		}
+	],
+	"buildPresets": [
+		{
+			"name": "linux-static",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "linux-static"
+		},
+		{
+			"name": "linux-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "linux-static-dev"
+		},
+		{
+			"name": "x86-linux-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "x86-linux-static-dev"
+		},
+		{
+			"name": "osx-static",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "osx-static"
+		},
+		{
+			"name": "osx-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "osx-static-dev"
+		},
+		{
+			"name": "win-static",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "win-static"
+		},
+		{
+			"name": "win-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "win-static-dev"
+		},
+		{
+			"name": "arm64-linux-static",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "arm64-linux-static"
+		},
+		{
+			"name": "arm64-linux-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "arm64-linux-static-dev"
+		},
+		{
+			"name": "arm64-osx-static",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "arm64-osx-static"
+		},
+		{
+			"name": "arm64-osx-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "arm64-osx-static-dev"
+		},
+		{
+			"name": "arm64-win-static",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "arm64-win-static"
+		},
+		{
+			"name": "arm64-win-static-dev",
+			"inherits": [
+				"base-default"
+			],
+			"configurePreset": "arm64-win-static-dev"
 		}
 	]
 }
